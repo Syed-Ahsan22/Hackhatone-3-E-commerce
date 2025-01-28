@@ -10,7 +10,12 @@ export default function Navbar() {
           <p>
             Summer Sale For All Nike shoes And Free Express Delivery - OFF 50%!
           </p>
-          <button className="font-semibold underline">Shop Now</button>
+          <button
+            className="font-semibold underline"
+            aria-label="Shop Now for Summer Sale"
+          >
+            Shop Now
+          </button>
           <div className="flex items-center gap-2">
             <p>English</p>
             <Image
@@ -32,12 +37,14 @@ export default function Navbar() {
 
           {/* Search Bar */}
           <div className="flex items-center flex-1 justify-center mx-8">
+            <label htmlFor="search" className="sr-only">Search for products</label>
             <input
+              id="search"
               type="text"
               placeholder="Search for products..."
               className="w-full max-w-md h-10 px-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+            <button className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 sm:w-auto w-full">
               Search
             </button>
           </div>
@@ -62,7 +69,6 @@ export default function Navbar() {
             <Link href="/shipping" className="hover:underline">
               Track Order
             </Link>
-            
           </div>
         </div>
       </div>

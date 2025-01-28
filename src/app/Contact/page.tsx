@@ -6,8 +6,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
-
 export default function ContactUs() {
   const [query, setQuery] = useState("");
   const router = useRouter();
@@ -16,11 +14,15 @@ export default function ContactUs() {
     setQuery(e.target.value);
   };
 
+  const handleSearch = () => {
+    alert(`Searching for: ${query}`);
+    setQuery(""); // Reset the query state after search
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Navbar (if needed) */}
       <Navbar />
-
+      
       <main className="p-6 flex flex-col items-center w-full max-w-4xl mx-auto">
         <header className="w-full flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">Contact Us</h1>
@@ -31,9 +33,10 @@ export default function ContactUs() {
               value={query}
               onChange={handleQueryChange}
               className="w-64 p-2 border border-gray-300 rounded-md"
+              aria-label="Search query input"
             />
             <button
-              onClick={() => alert(`Searching for: ${query}`)}
+              onClick={handleSearch}
               className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             >
               Search
@@ -42,7 +45,6 @@ export default function ContactUs() {
         </header>
 
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Help Options */}
           <div className="border border-gray-300 rounded-lg p-4">
             <h2 className="text-xl font-bold mb-2">What can we help you with?</h2>
             <ul className="space-y-2">
@@ -53,7 +55,6 @@ export default function ContactUs() {
             </ul>
           </div>
 
-          {/* Contact Options */}
           <div className="border border-gray-300 rounded-lg p-4">
             <h2 className="text-xl font-bold mb-2">Contact Options</h2>
             <ul className="space-y-2">
@@ -65,7 +66,7 @@ export default function ContactUs() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="font-semibold">Message:</span>
-                <a href="mailto:support@nike.com" className="text-blue-500 hover:underline">
+                <a href="mailto:support@nike.com" className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
                   support@nike.com
                 </a>
               </li>
@@ -76,7 +77,6 @@ export default function ContactUs() {
             </ul>
           </div>
 
-          {/* Payment Options */}
           <div className="border border-gray-300 rounded-lg p-4">
             <h2 className="text-xl font-bold mb-2">Payments</h2>
             <p className="mb-2">Choose a payment option below:</p>
@@ -88,7 +88,6 @@ export default function ContactUs() {
             </ul>
           </div>
 
-          {/* Location and More */}
           <div className="border border-gray-300 rounded-lg p-4">
             <h2 className="text-xl font-bold mb-2">Find Us</h2>
             <p>Visit our stores or find nearby locations. Now Only Online Store:</p>
@@ -102,7 +101,6 @@ export default function ContactUs() {
         </div>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

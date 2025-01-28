@@ -1,18 +1,33 @@
+ "use client"
+ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+    // Proceed with form submission (e.g., API call)
+    console.log('Form submitted', { email, password });
+  };
+
   return (
     <div>
       <Navbar />
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
-        <div className="flex gap-12 bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="flex gap-12 bg-white shadow-md rounded-lg overflow-hidden md:flex-col">
           {/* Left Image Section */}
-          <div className="w-[805px]">
+          <div className="w-[805px] hidden md:block">
             <Image
               className="object-cover"
               src="/b1.png"
@@ -30,7 +45,7 @@ export default function Login() {
             <p className="text-gray-600 mb-6">Enter your details below</p>
 
             {/* Input Fields */}
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="sr-only" htmlFor="name">
                   Name
@@ -40,6 +55,8 @@ export default function Login() {
                   type="text"
                   placeholder="Name"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -51,6 +68,8 @@ export default function Login() {
                   type="text"
                   placeholder="Email or Phone Number"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -62,6 +81,8 @@ export default function Login() {
                   type="password"
                   placeholder="Password"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </form>
@@ -80,7 +101,7 @@ export default function Login() {
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
-                <Link href="/Login" className="text-blue-500 hover:underline">
+                <Link href="/login" className="text-blue-500 hover:underline">
                   Login
                 </Link>
               </p>
@@ -88,7 +109,7 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

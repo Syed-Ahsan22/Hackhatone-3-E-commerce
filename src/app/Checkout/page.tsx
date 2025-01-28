@@ -35,6 +35,21 @@ export default function CheckoutPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Simple form validation check
+    if (!name || !address || !postalCode || !country || !phone || !email) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    // If billing address is different, check if billing fields are filled
+    if (!billingSameAsShipping) {
+      if (!billingName || !billingAddress || !billingPostalCode || !billingCountry) {
+        alert("Please fill out billing address fields.");
+        return;
+      }
+    }
+
     alert("Order Submitted Successfully!");
     router.push("/thank-you"); // Redirect to a Thank You page after successful checkout
   };
